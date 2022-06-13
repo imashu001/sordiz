@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import "../../src/style/style.css";
 const tables = (props) => {
   //const table = props.table.tablesList;
   console.log(props.table);
@@ -56,25 +57,27 @@ const tables = (props) => {
                 borderRadius: "10px",
               }}
             >
-              <span style={{ fontSize: "12px", float: "left" }}>
-                {item.OccupiedTime}
-              </span>
-              <br />
-              <span className="mx-4" style={{ fontWeight: "bold" }}>
-                {item.TableNumber}
-              </span>
-              <br />
-              <span
-                style={{
-                  fontSize: "12px",
-                  float: "left",
-                  visibility: `${item.AdCount === 0 ? "hidden" : ""}`,
-                }}
-              >
-                {item.AdCount}
-                {item.JnCount}
-                {item.KdCount}
-              </span>
+              <Link className="textLink" to="/tabledetails">
+                <span style={{ fontSize: "12px", float: "left" }}>
+                  {item.OccupiedTime}
+                </span>
+                <br />
+                <span className="mx-4" style={{ fontWeight: "bold" }}>
+                  {item.TableNumber}
+                </span>
+                <br />
+                <span
+                  style={{
+                    fontSize: "12px",
+                    float: "left",
+                    visibility: `${item.AdCount === 0 ? "hidden" : ""}`,
+                  }}
+                >
+                  {item.AdCount}
+                  {item.JnCount}
+                  {item.KdCount}
+                </span>
+              </Link>
             </li>
           ))}
         </ul>

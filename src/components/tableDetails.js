@@ -7,6 +7,7 @@ import "../../src/style/style.css";
 class tableDetail extends Component {
   state = {
     count: 0,
+    tableDetailData: {}
   };
 
   handleClickAdd = () => {
@@ -18,11 +19,14 @@ class tableDetail extends Component {
   };
 
   componentDidMount() {
-    return this.props.fetchTables();
+    // return this.props.fetchTables();
+    const ROOT_URL = "http://122.176.28.110/TCBROMS/v3/GetTableOrder?orderid=B4476988-4266-4DC9-8446-69B1660FF7FD&UserId=208";
+    fetch(ROOT_URL)           
+        .then(response => response.json())
+        .then(data => this.setState({tableDetailData: data}));
   }
 
   render() {
-    console.log(this.props.table);
     return (
       <div className="container" style={{ display: "inline-block" }}>
         <div>
@@ -46,6 +50,31 @@ class tableDetail extends Component {
             </tr>
           </thead>
           <tbody>
+
+          {
+            this.state?.tableDetailData &&  this.state?.tableDetailData?.tableProducts?.map(item => 
+              <tr>
+              <th scope="row">{item.ProductQty}</th>
+              <td>{item.Description}</td>
+              <td></td>
+              <td>${item.Price}</td>
+              <td>${item.Price * item.ProductQty}</td>
+              <td
+                style={{ cursor: "pointer", fontWeight: "bold" }}
+                onClick={this.handleClickAdd}
+              >
+                +
+              </td>
+              <td
+                style={{ cursor: "pointer", fontWeight: "bold" }}
+                onClick={this.handleClickSub}
+              >
+                -
+              </td>
+            </tr>
+            )
+          }
+
             <tr>
               <th scope="row">{this.state.count}</th>
               <td>Soft Drink</td>

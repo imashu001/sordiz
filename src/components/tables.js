@@ -57,7 +57,7 @@ const tables = (props) => {
                 borderRadius: "10px",
               }}
             >
-              <Link className="textLink" to="/tabledetails">
+              <Link className="textLink"  to={`/tabledetails/${item.OrderGUID}`} >
                 <span style={{ fontSize: "12px", float: "left" }}>
                   {item.OccupiedTime}
                 </span>

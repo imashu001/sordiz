@@ -12,7 +12,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path="/TableDetails" element={<TableDetails />} />
+        <Route path="/TableDetails/:id" element={<TableDetails />} />
         <Route path="/Payment" element={<Payment />} />
         <Route path="/" element={<App />} />
       </Routes>

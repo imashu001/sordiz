@@ -3,24 +3,28 @@ import { connect } from "react-redux";
 import { fetchTables } from "../actions";
 import { Link } from "react-router-dom";
 import "../../src/style/style.css";
+import { toInteger } from "lodash";
 
 class tableDetail extends Component {
   state = {
-    count: 0,
+    count: "",
     tableDetailData: {}
   };
 
-  handleClickAdd = () => {
-    this.setState((prev) => ({ count: prev.count + 1 }));
+  handleClickAdd = (orderpartId) => {
+    console.log(orderpartId)
+    //this.setState((prev) => ({ count: prev.count + 1 }));
   };
 
-  handleClickSub = () => {
+  handleClickSub = (orderpartId) => {  
+    console.log(orderpartId)
     this.setState((prev) => ({ count: prev.count - 1 }));
   };
 
-  componentDidMount() {
+  componentDidMount(tableId) {
+    console.log(tableId)
     // return this.props.fetchTables();
-    const ROOT_URL = "http://122.176.28.110/TCBROMS/v3/GetTableOrder?orderid=B4476988-4266-4DC9-8446-69B1660FF7FD&UserId=208";
+    const ROOT_URL = "http://122.176.28.110/TCBROMS/v3/GetTableOrder?orderid=8acf2adb-44a5-49b3-86c4-f4737fca8e14&UserId=208";
     fetch(ROOT_URL)           
         .then(response => response.json())
         .then(data => this.setState({tableDetailData: data}));
@@ -53,71 +57,35 @@ class tableDetail extends Component {
 
           {
             this.state?.tableDetailData &&  this.state?.tableDetailData?.tableProducts?.map(item => 
-              <tr>
-              <th scope="row">{item.ProductQty}</th>
+              //<tr key={item.OrderPartID}>
+              <tr key={item.OrderPartID}>
+              <th scope="row" id="quantity">{item.ProductQty}</th>
               <td>{item.Description}</td>
               <td></td>
               <td>${item.Price}</td>
               <td>${item.Price * item.ProductQty}</td>
               <td
                 style={{ cursor: "pointer", fontWeight: "bold" }}
-                onClick={this.handleClickAdd}
+                onClick={(orderpartID)=>{this.handleClickAdd(item.OrderPartID)}}
               >
                 +
               </td>
               <td
                 style={{ cursor: "pointer", fontWeight: "bold" }}
-                onClick={this.handleClickSub}
+                onClick={(orderpartId)=>{this.handleClickSub(item.OrderPartID)}}
               >
-                -
+                - 
               </td>
             </tr>
             )
           }
 
-            <tr>
-              <th scope="row">{this.state.count}</th>
-              <td>Soft Drink</td>
-              <td></td>
-              <td>$2.00</td>
-              <td>$4.00</td>
-              <td
-                style={{ cursor: "pointer", fontWeight: "bold" }}
-                onClick={this.handleClickAdd}
-              >
-                +
-              </td>
-              <td
-                style={{ cursor: "pointer", fontWeight: "bold" }}
-                onClick={this.handleClickSub}
-              >
-                -
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">{this.state.count}</th>
-              <td>Weekend Lunch</td>
-              <td></td>
-              <td>$12.50</td>
-              <td>$12.50</td>
-              <td
-                style={{ cursor: "pointer", fontWeight: "bold" }}
-                onClick={this.handleClickAdd}
-              >
-                +
-              </td>
-              <td
-                style={{ cursor: "pointer", fontWeight: "bold" }}
-                onClick={this.handleClickSub}
-              >
-                -
-              </td>
-            </tr>
+           
           </tbody>
         </table>
         <div style={{ width: "50%" }}>
           <div className="d-flex justify-content-between" >
-            <div> Sub Total: $00.00 </div>
+            <div> Sub Total: $00.00  </div>
             <div>
               <button className="btn btn-md btn-outline">
                 <Link className="textLink" to="/payment">Pay</Link>

@@ -1,14 +1,16 @@
-import React, {Component} from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-
-class Payment extends Component{
-
-    render(){
-        return(
-            <div>
-                Payment Acknowledgement!
-            </div>
-        );
+const Payment = () => {
+    const navigate = useNavigate()
+    function navigation() {
+        navigate('/login')
     }
-} 
-export  default Payment;
+    navigation()
+    return (
+        <div>
+            Payment Acknowledgement!
+        </div>
+    );
+}
+export default Payment;

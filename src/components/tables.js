@@ -7,45 +7,45 @@ const tables = (props) => {
 
   return (
     <div className="container mb-3">
-      <div>
+      <div className="last">
         <ul className="list-group list-group-horizontal d-inline-block bg-light bg-gradient">
           {props.table.map((item) => (
             <li
               key={item.TableID}
-              className="list-group-item"
+              className="list-group-item text-center"
               style={{
                 backgroundColor:
                   item.CurrentStatus === 6
                     ? "Orange"
                     : item.CurrentStatus === 11
-                    ? "#7b68ee"
-                    : item.CurrentStatus === 1
-                    ? "#FFADD8E6"
-                    : item.CurrentStatus === 2
-                    ? "# #FFDB7093"
-                    : item.CurrentStatus === 3
-                    ? "##8B008B"
-                    : item.CurrentStatus === 4
-                    ? "##FF800080"
-                    : item.CurrentStatus === 5
-                    ? "#FFFFFF00"
-                    : item.CurrentStatus === 7
-                    ? "# #A2CD5A"
-                    : item.CurrentStatus === 8
-                    ? "#CD853F"
-                    : item.CurrentStatus === 9
-                    ? "#A9A9A9"
-                    : item.CurrentStatus === 10
-                    ? "#00FF00"
-                    : item.CurrentStatus === 11
-                    ? "#7b68ee"
-                    : item.CurrentStatus === 12
-                    ? "#D1001C"
-                    : item.CurrentStatus === 13
-                    ? "#000000"
-                    : item.CurrentStatus === 14
-                    ? "#0052a2"
-                    : "",
+                      ? "#7b68ee"
+                      : item.CurrentStatus === 1
+                        ? "#FFADD8E6"
+                        : item.CurrentStatus === 2
+                          ? "# #FFDB7093"
+                          : item.CurrentStatus === 3
+                            ? "##8B008B"
+                            : item.CurrentStatus === 4
+                              ? "##FF800080"
+                              : item.CurrentStatus === 5
+                                ? "#FFFFFF00"
+                                : item.CurrentStatus === 7
+                                  ? "# #A2CD5A"
+                                  : item.CurrentStatus === 8
+                                    ? "#CD853F"
+                                    : item.CurrentStatus === 9
+                                      ? "#A9A9A9"
+                                      : item.CurrentStatus === 10
+                                        ? "#00FF00"
+                                        : item.CurrentStatus === 11
+                                          ? "#7b68ee"
+                                          : item.CurrentStatus === 12
+                                            ? "#D1001C"
+                                            : item.CurrentStatus === 13
+                                              ? "#000000"
+                                              : item.CurrentStatus === 14
+                                                ? "#0052a2"
+                                                : "",
                 color: "black",
                 width: "7%",
                 margin: "20px 15px 20px 30px",
@@ -57,7 +57,14 @@ const tables = (props) => {
                 borderRadius: "10px",
               }}
             >
-              <Link className="textLink"  to={`/tabledetails/${item.OrderGUID}`} >
+              {/* <Link className="textLink"  to={`/tabledetails/${item.OrderGUID}`} > */}
+              <Link
+                className="textLink"
+                to={{
+                  pathname: `/tableDetails/${item.OrderGUID}/${item.TableID}`,
+                  state: { tableId: item.OrderGUID },
+                }}
+              >
                 <span style={{ fontSize: "12px", float: "left" }}>
                   {item.OccupiedTime}
                 </span>

@@ -6,3 +6,14 @@
 .textLink:hover{
     color: black;
 }
+.hoverList:hover{
+ background: black !important;
+ color: white !important;
+ cursor: pointer !important;
+ border-radius: 8px !important;
+ transition: color .30s ease-in-out !important;
+}
+
+.last ul li:last-child {
+  width: 200px !important;
+  }

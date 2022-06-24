@@ -42,7 +42,7 @@ const Menutable = () => {
       </div>
       <div className="border" style={{ width: "445px" }}>
         <ul
-          className="list-group list-group-horizontal bg-light rounded-0 d-flex d-flex"
+          className="list-group list-group-horizontal bg-light rounded-0 d-flex d-flex justify-content-around"
           style={{ justifyContent: "space-around" }}
         >
           {/* mapping over menudata (getting from backend and displaying the menu headers) */}

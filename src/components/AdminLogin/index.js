@@ -2,7 +2,7 @@ import React, { useState } from "react";
 //import ReactDOM from "react-dom";
 //import Apphome from "../Home/index";
 import { useNavigate } from "react-router-dom";
-import "../../style/style.css";
+import "./styles.css";
 
 function LoginApp() {
   // React States
@@ -27,6 +27,10 @@ function LoginApp() {
   };
 
   const history = useNavigate();
+  // function navigation() {
+  //   history("/login");
+  // }
+  // navigation();
   function navigation() {
     history("/login");
   }
@@ -83,9 +87,9 @@ function LoginApp() {
   );
 
   return (
-    <div className="app">
+    <div className="loginform">
       <div className="login-form">
-        {/* {isSubmitted ? <div>User is successfully logged in</div> : renderForm} */}
+        {/* {isSubmitted ? <div>User is successfully logged in</div > : renderForm} */}
         {isSubmitted ? history("/Home") : renderForm}
       </div>
     </div>

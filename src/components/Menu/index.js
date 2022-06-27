@@ -44,19 +44,30 @@ const Menutable = ({ add }) => {
         <h5 className="text-center mb-3">Add Items</h5>
       </div>
       <div className="border ">
-        <ul className="list-group list-group-horizontal bg-light rounded-0 d-flex flex-wrap">
+        <ul className="list-group list-group-horizontal bg-light rounded-0 d-flex flex-wrap justify-content-around my-1">
           {/* mapping over menudata (getting from backend and displaying the menu headers) */}
           {menuData ? (
             Object.keys(menuData).map((menuheaders, index) => {
               return (
                 <button
-                  key={index}
+                  type="button"
                   onClick={() => {
                     changeHeaders(menuheaders);
                   }}
-                >
+                  className="btn btn-primary"
+                  data-toggle="button"
+                  aria-pressed="false"
+                  autocomplete="off">
                   {menuheaders}
                 </button>
+                // <button
+                //   key={index}
+                //   onClick={() => {
+                //     changeHeaders(menuheaders);
+                //   }}
+                // >
+                //   {menuheaders}
+                // </button>
               );
             })
           ) : (
@@ -70,14 +81,14 @@ const Menutable = ({ add }) => {
             </div>
           )}
         </ul>
-        <div>
+        <div className="list-group list-group-horizontal bg-light rounded-0 d-flex flex-wrap justify-content-around my-1">
           {/* mapping over selected headers and displaying the related group names */}
           {menuData &&
             menuData[selectedMenu].map((menugroups, index) => {
               return (
                 <button
                   key={index}
-                  style={{ backgroundColor: "red" }}
+                  className="btn btn-outline-danger"
                   onClick={() => setGroupname(menugroups.Group.Groupname)}
                 >
                   {menugroups.Group.Groupname}
@@ -86,13 +97,15 @@ const Menutable = ({ add }) => {
             })}
         </div>
         {/* displaying the group products related to the selected group name */}
-        {display.map((item, index) => {
-          return (
-            <button onClick={() => add(item)} key={index}>
-              {item.Description}
-            </button>
-          );
-        })}
+        <div >
+          {display.map((item, index) => {
+            return (
+              <button onClick={() => add(item)} key={index} className="btn btn-success my-1 mx-3">
+                {item.Description}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

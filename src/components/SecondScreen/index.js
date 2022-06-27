@@ -55,10 +55,12 @@ const SecondScreen = () => {
     }
   }
 
+  const tableHeaders = ["Quantity", "Product", "Options", "Price", "Total", "Add", "Remove"]
+
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Thetable tabledetails={tableProducts ? tableProducts : []} add={addQuantitiy} remove={subtractQuantity} />
+        <Thetable tabledetails={tableProducts ? tableProducts : []} add={addQuantitiy} remove={subtractQuantity} tableHeaders={tableHeaders} />
         <MenuTable add={addToState} />
       </div>
     </>

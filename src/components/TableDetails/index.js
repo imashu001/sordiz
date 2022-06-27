@@ -5,40 +5,14 @@ import { Link } from "react-router-dom";
 import "../../../src/style/style.css";
 import MenuTable from "../Menu";
 
-const Thetable = ({ tabledetails, add, remove }) => {
-
-  const [state, updateState] = useState(null)
-
-  const handleClickAdd = (orderpartId) => {
-    // console.log(state.tableProducts)
-    // const filtered = state.tableProducts.filter((itm) => itm.OrderPartID === orderpartId)
-    // console.log(orderpartId, filtered)
-    state.tableProducts.map((item) => {
-      console.log(orderpartId === item.OrderPartID)
-      updateState(() => { item.OrderPartID === orderpartId ? item.ProductQty = item.ProductQty + 1 : console.log("no changes") })
-    })
-
-    console.log(state.tableProducts, "dd")
-  };
+const Thetable = ({ tabledetails, add, remove, tableHeaders }) => {
 
   const handleClickSub = (orderpartId) => {
     console.log(orderpartId)
     //setState((prev) => ({ count: prev.count - 1 }));
   };
 
-  useEffect(() => {
-    async function fetchData() {
-      const path = window.location.pathname.split('/')
-      fetch(`http://122.176.28.110/TCBROMS/v3/GetTableOrder?orderid=${path[2]}&UserId=208`)
-        .then(response => response.json())
-        .then(data => updateState(data));
-    }
-    fetchData()
-  }, [])
-
-
   var count = 0
-  console.log(tabledetails, "tabledetails")
 
   return (
     <div className="container d-flex" style={{ display: "inline-block" }}>
@@ -54,17 +28,14 @@ const Thetable = ({ tabledetails, add, remove }) => {
         <table className="table table-bordered mt-2 table-striped" style={{ width: "100%" }}>
           <thead>
             <tr>
-              <th scope="col">Q</th>
-              <th scope="col">Product</th>
-              <th scope="col">Options</th>
-              <th scope="col">Price</th>
-              <th scope="col">Totassssl</th>
-              <th scope="col">Add</th>
-              <th scope="col">Remove</th>
+              {tableHeaders.map((item) => {
+                return (
+                  <th scope="col">{item}</th>
+                )
+              })}
             </tr>
           </thead>
           <tbody>
-            {console.log(state && state.tableProducts, "table produces")}
             {tabledetails && tabledetails.map((item) => {
               return (
 
@@ -92,9 +63,6 @@ const Thetable = ({ tabledetails, add, remove }) => {
                 </tr>
               )
             })}
-            {/* {console.log(state.tableProducts)} */}
-            {/* {state && } */}
-
           </tbody>
         </table>
         <div style={{ width: "50%" }}>
@@ -103,7 +71,6 @@ const Thetable = ({ tabledetails, add, remove }) => {
 
             {tabledetails && tabledetails.map((itm) => {
               count = count + ((itm.ProductQty || 1) * itm.Price)
-              // console.log(itm.ProductQty * itm.Price)
             })}
             <div> Sub Total: ${count} </div>
 

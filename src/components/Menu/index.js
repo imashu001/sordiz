@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../../src/style/style.css";
 
-const Menutable = () => {
+const Menutable = ({ add }) => {
   const [menuData, setMenuData] = useState(null);
   const [selectedMenu, updateSelectedMenu] = useState("DrinksMenu");
   const [selectedGroups, updateSelectedGroups] = useState(null);
@@ -24,6 +24,7 @@ const Menutable = () => {
     updateSelectedMenu(headers);
     setDisplay([]);
   };
+  console.log(add)
 
   // function to set groupName of the selected headers
   const setGroupname = (name) => {
@@ -36,23 +37,20 @@ const Menutable = () => {
     });
   };
 
+  console.log("Checking");
   return (
     <div className="container mt-3">
       <div>
         <h5 className="text-center mb-3">Add Items</h5>
       </div>
-      <div className="border" style={{ width: "445px" }}>
-        <ul
-          className="list-group list-group-horizontal bg-light rounded-0 d-flex d-flex justify-content-around"
-          style={{ justifyContent: "space-around" }}
-        >
+      <div className="border ">
+        <ul className="list-group list-group-horizontal bg-light rounded-0 d-flex flex-wrap">
           {/* mapping over menudata (getting from backend and displaying the menu headers) */}
           {menuData ? (
             Object.keys(menuData).map((menuheaders, index) => {
               return (
                 <button
                   key={index}
-                  className="btn btn-outline mx-2 my-2 text-uppercase"
                   onClick={() => {
                     changeHeaders(menuheaders);
                   }}
@@ -66,7 +64,7 @@ const Menutable = () => {
               {/* while the app comes from the api we will display this as loader */}
               <div className="d-flex justify-content-center">
                 <div className="spinner-border" role="status">
-                  {/* <span className="sr-only">Loading...</span> */}
+                  <span className="sr-only">Loading...</span>
                 </div>
               </div>
             </div>
@@ -79,8 +77,7 @@ const Menutable = () => {
               return (
                 <button
                   key={index}
-                  className="btn btn-outline-dark mx-2 my-2"
-                  style={{ backgroundColor: "" }}
+                  style={{ backgroundColor: "red" }}
                   onClick={() => setGroupname(menugroups.Group.Groupname)}
                 >
                   {menugroups.Group.Groupname}
@@ -91,11 +88,7 @@ const Menutable = () => {
         {/* displaying the group products related to the selected group name */}
         {display.map((item, index) => {
           return (
-            <button
-              className="btn btn-outline border mx-2 my-2"
-              onClick={() => console.log({ item })}
-              key={index}
-            >
+            <button onClick={() => add(item)} key={index}>
               {item.Description}
             </button>
           );

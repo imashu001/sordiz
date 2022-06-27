@@ -1,0 +1,7 @@
+export const authentication = {
+  LOGIN_INIT: "LOGIN_INIT",
+  LOGIN_FAILED: "LOGIN_FAILED",
+  LOGIN_SUCCESS: "LOGIN_SUCCESS",
+  SIGNUP_INIT: "SIGNUP_INIT",
+  LOGOUT: "LOGOUT",
+}

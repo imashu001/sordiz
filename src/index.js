@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -26,3 +27,19 @@ ReactDOM.render(
   </Provider>,
   document.querySelector("#root")
 );
+=======
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from 'react-redux'
+import App from './App'
+import store from "./store"
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+  ,
+  document.querySelector("#root")
+);
+
+>>>>>>> 5537186ec2a83b99ae1eaf998a664a9db064016f

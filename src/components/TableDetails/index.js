@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { fetchTables } from "../../actions";
@@ -21,12 +22,20 @@ const Thetable = () => {
 
     console.log(state.tableProducts, "dd")
   };
+=======
+import React from "react";
+import { Link } from "react-router-dom";
+import "../../../src/style/style.css";
+
+const Thetable = ({ tabledetails, add, remove, tableHeaders }) => {
+>>>>>>> 5537186ec2a83b99ae1eaf998a664a9db064016f
 
   const handleClickSub = (orderpartId) => {
     console.log(orderpartId)
     //setState((prev) => ({ count: prev.count - 1 }));
   };
 
+<<<<<<< HEAD
   useEffect(() => {
     async function fetchData() {
       const path = window.location.pathname.split('/')
@@ -38,6 +47,8 @@ const Thetable = () => {
   }, [])
 
 
+=======
+>>>>>>> 5537186ec2a83b99ae1eaf998a664a9db064016f
   var count = 0
 
   return (
@@ -54,6 +65,7 @@ const Thetable = () => {
         <table className="table table-bordered mt-2 table-striped" style={{ width: "100%" }}>
           <thead>
             <tr>
+<<<<<<< HEAD
               <th scope="col">Q</th>
               <th scope="col">Product</th>
               <th scope="col">Options</th>
@@ -84,6 +96,31 @@ const Thetable = () => {
                     style={{ cursor: "pointer", fontWeight: "bold" }}
                     onClick={(orderpartId) => { this.handleClickSub(item.OrderPartID) }}
                   >
+=======
+              {tableHeaders.map((item) => {
+                return (
+                  <th scope="col">{item}</th>
+                )
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {tabledetails && tabledetails.map((item) => {
+              return (
+                <tr key={item.OrderPartID}>
+                  <th scope="row" id="quantity">{item.ProductQty || 1}</th>
+                  <td>{item.Description}</td>
+                  <td></td>
+                  <td>${item.Price}</td>
+                  <td>${item.Price * (item.ProductQty || 1)}</td>
+                  <td
+                    className="text-center"
+                    style={{ cursor: "pointer", fontWeight: "bold" }}
+                    onClick={(orderpartID) => { add(item) }}
+                  > <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border">
+                      +
+                    </button>
+>>>>>>> 5537186ec2a83b99ae1eaf998a664a9db064016f
                     <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border">
                       -
                     </button>
@@ -91,18 +128,26 @@ const Thetable = () => {
                 </tr>
               )
             })}
+<<<<<<< HEAD
             {/* {console.log(state.tableProducts)} */}
             {/* {state && } */}
 
+=======
+>>>>>>> 5537186ec2a83b99ae1eaf998a664a9db064016f
           </tbody>
         </table>
         <div style={{ width: "50%" }}>
 
           <div className="d-flex justify-content-between" >
 
+<<<<<<< HEAD
             {state && state.tableProducts.map((itm) => {
               count = count + (itm.ProductQty * itm.Price)
               // console.log(itm.ProductQty * itm.Price)
+=======
+            {tabledetails && tabledetails.map((itm) => {
+              count = count + ((itm.ProductQty || 1) * itm.Price)
+>>>>>>> 5537186ec2a83b99ae1eaf998a664a9db064016f
             })}
             <div> Sub Total: ${count} </div>
 
@@ -117,7 +162,10 @@ const Thetable = () => {
         </div>
 
       </div>
+<<<<<<< HEAD
       <div> <MenuTable />  </div>
+=======
+>>>>>>> 5537186ec2a83b99ae1eaf998a664a9db064016f
     </div>
   );
   // }

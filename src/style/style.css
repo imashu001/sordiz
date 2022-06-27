@@ -16,6 +16,7 @@
 
 .last ul li:last-child {
   width: 200px !important;
+<<<<<<< HEAD
   }
 
   .app {
@@ -80,4 +81,6 @@
     flex-direction: column;
     gap: 8px;
     margin: 10px;
+=======
+>>>>>>> 5537186ec2a83b99ae1eaf998a664a9db064016f
   }

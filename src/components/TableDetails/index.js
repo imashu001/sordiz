@@ -5,15 +5,14 @@ import { Link } from "react-router-dom";
 import "../../../src/style/style.css";
 import MenuTable from "../Menu";
 
-const Thetable = () => {
+const Thetable = ({ tabledetails, add, remove }) => {
 
   const [state, updateState] = useState(null)
-  const [total, setTotal] = useState()
+
   const handleClickAdd = (orderpartId) => {
     // console.log(state.tableProducts)
     // const filtered = state.tableProducts.filter((itm) => itm.OrderPartID === orderpartId)
     // console.log(orderpartId, filtered)
-    var newstate
     state.tableProducts.map((item) => {
       console.log(orderpartId === item.OrderPartID)
       updateState(() => { item.OrderPartID === orderpartId ? item.ProductQty = item.ProductQty + 1 : console.log("no changes") })
@@ -39,6 +38,7 @@ const Thetable = () => {
 
 
   var count = 0
+  console.log(tabledetails, "tabledetails")
 
   return (
     <div className="container d-flex" style={{ display: "inline-block" }}>
@@ -58,31 +58,32 @@ const Thetable = () => {
               <th scope="col">Product</th>
               <th scope="col">Options</th>
               <th scope="col">Price</th>
-              <th scope="col">Total</th>
+              <th scope="col">Totassssl</th>
               <th scope="col">Add</th>
               <th scope="col">Remove</th>
             </tr>
           </thead>
           <tbody>
             {console.log(state && state.tableProducts, "table produces")}
-            {state && state.tableProducts.map((item) => {
+            {tabledetails && tabledetails.map((item) => {
               return (
+
                 <tr key={item.OrderPartID}>
-                  <th scope="row" id="quantity">{item.ProductQty}</th>
+                  <th scope="row" id="quantity">{item.ProductQty || 1}</th>
                   <td>{item.Description}</td>
                   <td></td>
                   <td>${item.Price}</td>
-                  <td>${item.Price * item.ProductQty}</td>
+                  <td>${item.Price * (item.ProductQty || 1)}</td>
                   <td
                     style={{ cursor: "pointer", fontWeight: "bold" }}
-                    onClick={(orderpartID) => { handleClickAdd(item.OrderPartID) }}
+                    onClick={(orderpartID) => { add(item) }}
                   > <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border">
                       +
                     </button>
                   </td>
                   <td className="text-center"
                     style={{ cursor: "pointer", fontWeight: "bold" }}
-                    onClick={(orderpartId) => { this.handleClickSub(item.OrderPartID) }}
+                    onClick={(orderpartId) => { remove(item) }}
                   >
                     <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border">
                       -
@@ -100,8 +101,8 @@ const Thetable = () => {
 
           <div className="d-flex justify-content-between" >
 
-            {state && state.tableProducts.map((itm) => {
-              count = count + (itm.ProductQty * itm.Price)
+            {tabledetails && tabledetails.map((itm) => {
+              count = count + ((itm.ProductQty || 1) * itm.Price)
               // console.log(itm.ProductQty * itm.Price)
             })}
             <div> Sub Total: ${count} </div>
@@ -117,7 +118,6 @@ const Thetable = () => {
         </div>
 
       </div>
-      <div> <MenuTable />  </div>
     </div>
   );
   // }

@@ -9,6 +9,7 @@ import Payment from "./components/Payment";
 import { Provider } from 'react-redux';
 import store from "./store";
 import Apphome from "./components/Home";
+import SecondScreen from "./components/SecondScreen";
 // import Thetable from "./components/TableDetails";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Routes>
-          <Route path="/TableDetails/:Orderid/:tableId" element={<Thetable />} />
+          <Route path="/TableDetails/:Orderid/:tableId" element={<SecondScreen />} />
           <Route path="/Payment" element={<Payment />} />
           <Route path="/login" element={<Payment />} />
           <Route path="/Home" element={<Apphome />} />

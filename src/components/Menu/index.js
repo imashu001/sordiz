@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../../src/style/style.css";
 
-const Menutable = () => {
+const Menutable = ({ add }) => {
   const [menuData, setMenuData] = useState(null);
   const [selectedMenu, updateSelectedMenu] = useState("DrinksMenu");
   const [selectedGroups, updateSelectedGroups] = useState(null);
@@ -24,6 +24,7 @@ const Menutable = () => {
     updateSelectedMenu(headers);
     setDisplay([]);
   };
+  console.log(add)
 
   // function to set groupName of the selected headers
   const setGroupname = (name) => {
@@ -87,14 +88,11 @@ const Menutable = () => {
         {/* displaying the group products related to the selected group name */}
         {display.map((item, index) => {
           return (
-            <button onClick={() => console.log({ item })} key={index}>
+            <button onClick={() => add(item)} key={index}>
               {item.Description}
             </button>
           );
         })}
-      </div>
-      <div>
-        <h1>The first branch</h1>
       </div>
     </div>
   );

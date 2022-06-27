@@ -40,17 +40,23 @@ const Thetable = ({ tabledetails, add, remove, tableHeaders }) => {
                   <td>{item.Description}</td>
                   <td></td>
                   <td>${item.Price}</td>
-                  <td>${item.Price * (item.ProductQty || 1)}</td>
+                  <td style={{
+                    maxWidth: "18px",
+                    overflow: "hidden",
+                    textOverflow: "clip"
+                  }}>${item.Price * (item.ProductQty || 1)}</td>
                   <td
                     className="text-center"
                     style={{ cursor: "pointer", fontWeight: "bold" }}
                     onClick={(orderpartID) => { add(item) }}
-                  > <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border">
-                      +
-                    </button>
-                    <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border">
-                      -
-                    </button>
+                  > <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+                      <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border">
+                        +
+                      </button>
+                      <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border">
+                        -
+                      </button>
+                    </div>
                   </td>
                 </tr>
               )

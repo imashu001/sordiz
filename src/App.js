@@ -10,6 +10,8 @@ import { Provider } from 'react-redux';
 import store from "./store";
 import Apphome from "./components/Home";
 import SecondScreen from "./components/SecondScreen";
+import Admin from "./components/AdminLogin/index";
+import ErrorPage from "./components/Error/index";
 // import Thetable from "./components/TableDetails";
 
 function App() {
@@ -20,20 +22,10 @@ function App() {
         <Routes>
           <Route path="/TableDetails/:Orderid/:tableId" element={<SecondScreen />} />
           <Route path="/Payment" element={<Payment />} />
-          <Route path="/login" element={<Payment />} />
+          <Route path="/login" element={<Admin />} />
           <Route path="/Home" element={<Apphome />} />
-          {/* <Route
-            exact
-            path='/'
-            render={() => {
-              return (
-                loggedin
-                  ? <Navigate to="/home" />
-                  : <Navigate to="/login" />
-              )
-            }}
-          /> */}
-          <Route path='/' element={<Payment />} />
+          <Route path="/" element={<Admin />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
     </div>

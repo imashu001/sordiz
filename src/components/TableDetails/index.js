@@ -1,9 +1,6 @@
-import React, { Component, useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { fetchTables } from "../../actions";
+import React from "react";
 import { Link } from "react-router-dom";
 import "../../../src/style/style.css";
-import MenuTable from "../Menu";
 
 const Thetable = ({ tabledetails, add, remove, tableHeaders }) => {
 
@@ -38,7 +35,6 @@ const Thetable = ({ tabledetails, add, remove, tableHeaders }) => {
           <tbody>
             {tabledetails && tabledetails.map((item) => {
               return (
-
                 <tr key={item.OrderPartID}>
                   <th scope="row" id="quantity">{item.ProductQty || 1}</th>
                   <td>{item.Description}</td>
@@ -46,16 +42,12 @@ const Thetable = ({ tabledetails, add, remove, tableHeaders }) => {
                   <td>${item.Price}</td>
                   <td>${item.Price * (item.ProductQty || 1)}</td>
                   <td
+                    className="text-center"
                     style={{ cursor: "pointer", fontWeight: "bold" }}
                     onClick={(orderpartID) => { add(item) }}
                   > <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border">
                       +
                     </button>
-                  </td>
-                  <td className="text-center"
-                    style={{ cursor: "pointer", fontWeight: "bold" }}
-                    onClick={(orderpartId) => { remove(item) }}
-                  >
                     <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border">
                       -
                     </button>

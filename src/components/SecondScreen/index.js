@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "../../../src/style/style.css";
 import MenuTable from "../Menu";
 import Thetable from "../TableDetails/index";
@@ -17,13 +16,11 @@ const SecondScreen = () => {
           updateState(data)
           updateTableproducts(data.tableProducts)
         })
-      // .then(data => updateTableproducts(data))
     }
     fetchData()
   }, [])
 
   const addToState = (item) => {
-    console.log(item, "clicked item", state)
     updateTableproducts(() => [...tableProducts, item])
   }
 
@@ -47,15 +44,13 @@ const SecondScreen = () => {
         newArray[index].ProductQty = newArray[index].ProductQty - 1
         updateTableproducts([...newArray])
       } else {
-        console.log("in the else condition")
         const filteredArray = newArray.filter((data) => (data.ProductID !== item.ProductID))
-        console.log(newArray, "newArray", filteredArray)
         updateTableproducts([...filteredArray])
       }
     }
   }
 
-  const tableHeaders = ["Quantity", "Product", "Options", "Price", "Total", "Add", "Remove"]
+  const tableHeaders = ["Quantity", "Product", "Options", "Price", "Total", "Actions"]
 
   return (
     <>

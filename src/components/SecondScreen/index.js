@@ -56,7 +56,7 @@ const SecondScreen = () => {
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Thetable tabledetails={tableProducts ? tableProducts : []} add={addQuantitiy} remove={subtractQuantity} tableHeaders={tableHeaders} />
-        <MenuTable add={addToState} />
+        {/* <MenuTable add={addToState} /> */}
       </div>
     </>
   )

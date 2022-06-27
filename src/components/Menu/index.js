@@ -24,7 +24,7 @@ const Menutable = ({ add }) => {
     updateSelectedMenu(headers);
     setDisplay([]);
   };
-  console.log(add)
+
 
   // function to set groupName of the selected headers
   const setGroupname = (name) => {
@@ -37,7 +37,6 @@ const Menutable = ({ add }) => {
     });
   };
 
-  console.log("Checking");
   return (
     <div className="container mt-3">
       <div>

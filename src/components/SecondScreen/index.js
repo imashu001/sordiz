@@ -7,6 +7,9 @@ const SecondScreen = () => {
   const [state, updateState] = useState()
   const [tableProducts, updateTableproducts] = useState()
 
+
+
+
   useEffect(() => {
     async function fetchData() {
       const path = window.location.pathname.split('/')
@@ -50,6 +53,8 @@ const SecondScreen = () => {
     }
   }
 
+
+
   const tableHeaders = ["Quantity", "Product", "Options", "Price", "Total", "Actions"]
 
   return (
@@ -61,8 +66,6 @@ const SecondScreen = () => {
     </>
   )
 }
-
-
 
 
 export default SecondScreen;

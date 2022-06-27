@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../../src/style/style.css";
+import "./index.css";
 
 const Thetable = ({ tabledetails, add, remove, tableHeaders }) => {
 
@@ -30,8 +30,16 @@ const Thetable = ({ tabledetails, add, remove, tableHeaders }) => {
                   <th scope="col">{item}</th>
                 )
               })}
-            </tr>
-          </thead>
+              {/* <th scope="col">Q</th>
+              <th scope="col">Product</th>
+              <th scope="col">Options</th>
+              <th scope="col">Price</th>
+              <th scope="col">Total</th>
+              <th scope="col">Add</th>
+              <th scope="col">Remove</th> */}
+            </tr >
+          </thead >
+
           <tbody>
             {tabledetails && tabledetails.map((item) => {
               return (
@@ -48,28 +56,27 @@ const Thetable = ({ tabledetails, add, remove, tableHeaders }) => {
                   <td
                     className="text-center"
                     style={{ cursor: "pointer", fontWeight: "bold" }}
-                    onClick={(orderpartID) => { add(item) }}
-                  > <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                      <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border">
-                        +
-                      </button>
-                      <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border">
-                        -
-                      </button>
-                    </div>
+
+                  > <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border" onClick={(orderpartID) => { add(item) }}>
+                      +
+                    </button>
+                    <button className="rounded text-center btn btn-outline-dark btn-sm fw-bold border" onClick={(orderpartID) => { remove(item) }}>
+                      -
+                    </button>
                   </td>
                 </tr>
               )
             })}
-          </tbody>
-        </table>
+          </tbody >
+        </table >
         <div style={{ width: "50%" }}>
 
           <div className="d-flex justify-content-between" >
 
             {tabledetails && tabledetails.map((itm) => {
               count = count + ((itm.ProductQty || 1) * itm.Price)
-            })}
+            })
+            }
             <div> Sub Total: ${count} </div>
 
             <div>
@@ -79,8 +86,8 @@ const Thetable = ({ tabledetails, add, remove, tableHeaders }) => {
             </div>
 
 
-          </div>
-        </div>
+          </div >
+        </div >
 
       </div>
     </div>

@@ -31,6 +31,10 @@ function LoginApp() {
   //   history("/login");
   // }
   // navigation();
+  function navigation() {
+    history("/login");
+  }
+  navigation();
 
   const handleSubmit = (event) => {
     //Prevent page reload
